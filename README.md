@@ -1,0 +1,1 @@
+Un proiect CLI pentru gestionarea task-urilor, scris in C++.
