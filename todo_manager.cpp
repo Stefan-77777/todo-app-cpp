@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 
 TodoManager::TodoManager(std::string file) {
     filename = file;
@@ -71,4 +72,48 @@ void TodoManager::save() {
                 << tasks[i].title << "|"
                 << tasks[i].description << std::endl;
     }
+}
+
+std::vector<Task> TodoManager::getByPriority(int priority) {
+    std::vector<Task> rezultat;
+    for (int i = 0; i < tasks.size(); i++) {
+        if (tasks[i].priority == priority) {
+            rezultat.push_back(tasks[i]);
+        }
+    }
+    return rezultat;
+}
+
+std::vector<Task> TodoManager::getByDone(bool done) {
+    std::vector<Task> rezultat;
+    for (int i = 0; i < tasks.size(); i++) {
+        if(tasks[i].done == done){
+            rezultat.push_back(tasks[i]);
+        }
+    }
+    return rezultat;
+}
+
+std::vector<Task> TodoManager::getAllSortedByPriority() {
+    std::vector<Task> rezultat = tasks;
+    std::sort(rezultat.begin(), rezultat.end(), [](Task a, Task b) {
+        return a.priority < b.priority;
+    });
+    return rezultat;
+}
+
+std::vector<Task> TodoManager::getAllSortedAlpha() {
+    std::vector<Task> rezultat = tasks;
+    std::sort(rezultat.begin(), rezultat.end(), [](Task a, Task b) {
+        return a.title < b.title;
+    });
+    return rezultat;
+}
+
+std::vector<Task> TodoManager::getAllSortedByDone() {
+    std::vector<Task> rezultat = tasks;
+    std::sort(rezultat.begin(), rezultat.end(), [](Task a, Task b) {
+        return a.done < b.done;
+    });
+    return rezultat;
 }

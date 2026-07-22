@@ -17,6 +17,11 @@ public:
     void completeTask(int id);
     void deleteTask(int id);
     std::vector<Task> getAll();
+    std::vector<Task> getByPriority(int priority);
+    std::vector<Task> getByDone(bool done);
+    std::vector<Task> getAllSortedByPriority();
+    std::vector<Task> getAllSortedAlpha();
+    std::vector<Task> getAllSortedByDone();
     void load();
     void save();
 };

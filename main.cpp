@@ -20,7 +20,7 @@ int main() {
     TodoManager manager("tasks.txt");
     std::string comanda;
 
-    std::cout << "Todo App - comenzi: list, add, done, del, quit" << std::endl;
+    std::cout << "Todo App - comenzi: list, list-priority, list-alpha, list-done, add, done, del, filter-priority, filter-done, quit" << std::endl;
 
     while(true) {
         std::cout << "> ";
@@ -55,12 +55,34 @@ int main() {
             std::cin >> id;
             manager.deleteTask(id);
             std::cout << "Task sters." << std::endl;
+        
+        } else if (comanda == "filter-priority") {
+            int priority;
+            std::cout << "Prioritate (1-3): ";
+            std::cin >> priority;
+            printTasks(manager.getByPriority(priority));
+        
+        } else if (comanda == "filter-done") {
+            bool done;
+            std::cout << "Rezolvate (1) sau nerezolvate (0): ";
+            std::cin >> done;
+            printTasks(manager.getByDone(done));
+
+        } else if (comanda == "list-priority") {
+            printTasks(manager.getAllSortedByPriority());
+
+        } else if (comanda == "list-alpha") {
+            printTasks(manager.getAllSortedAlpha());
+
+        } else if (comanda == "list-done") {
+            printTasks(manager.getAllSortedByDone());
 
         } else if (comanda == "quit") {
             break;
 
         } else {
             std::cout << "Comanda necunoscuta." << std::endl;
+
         }
     }
 
