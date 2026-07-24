@@ -109,6 +109,9 @@ int main() {
         std::cout << "3. Adauga task" << std::endl;
         std::cout << "4. Marcheaza task-ul ca rezolvat" << std::endl;
         std::cout << "5. Sterge task" << std::endl;
+        std::cout << "6. Editeaza task" << std::endl;
+        std::cout << "7. Sterge task-urile rezolvate" << std::endl;
+        std::cout << "8. Numara task-uri" << std::endl;
         std::cout << "0. Iesire" << std::endl;
         std::cout << "> ";
 
@@ -150,6 +153,39 @@ int main() {
                 std::cin >> id;
                 manager.deleteTask(id);
                 std::cout << "Task sters." << std::endl;
+                break;
+            }
+            case 6: {
+                int id, priority;
+                std::string title, description;
+                std::cout << "ID task de editat: ";
+                std::cin >> id;
+                std::cout << "Titlu vechi: " << manager.getAll()[id].title << std::endl;
+                std::cout << "Titlu nou: ";
+                std::cin.ignore();
+                std::getline(std::cin, title);
+                std::cout << "Descriere veche: " << manager.getAll()[id].description << std::endl;
+                std::cout << "Descriere noua: ";
+                std::getline(std::cin, description);
+                std::cout << "Prioritate veche: " << manager.getAll()[id].priority << std::endl;
+                std::cout << "Prioritate noua (1-3): ";
+                std::cin >> priority;
+                manager.editTask(id, title, description, priority);
+                std::cout << "Task editat." << std::endl;
+                break;
+            }
+            case 7: {
+                manager.clearDone();
+                std::cout << "Task-urile rezolvate au fost sterse." << std::endl;
+                break;
+            }
+            case 8: {
+                std::vector<Task> toate = manager.getAll();
+                int rezolvate = manager.getByDone(true).size();
+                int nerezolvate = manager.getByDone(false).size();
+                std::cout << "Total task-uri: " << toate.size() << std::endl;
+                std::cout << "Task-uri rezolvate: " << rezolvate << std::endl;
+                std::cout << "Task-uri nerezolvate: " << nerezolvate << std::endl;
                 break;
             }
             case 0:

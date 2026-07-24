@@ -117,3 +117,24 @@ std::vector<Task> TodoManager::getAllSortedByDone() {
     });
     return rezultat;
 }
+
+void TodoManager::editTask(int id, std::string title, std::string description, int priority) {
+    for (int i = 0; i < tasks.size(); i++) {
+        if (tasks[i].id == id) {
+            tasks[i].title = title;
+            tasks[i].description = description;
+            tasks[i].priority = priority;
+            save();
+            return;
+        }
+    }
+}
+
+void TodoManager::clearDone() {
+    for (int i = tasks.size() - 1; i >= 0; i--) {
+        if (tasks[i].done) {
+            tasks.erase(tasks.begin() + i);
+        }
+    }
+    save();
+}

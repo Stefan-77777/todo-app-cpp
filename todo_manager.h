@@ -19,6 +19,8 @@ public:
     std::vector<Task> getAll();
     std::vector<Task> getByPriority(int priority);
     std::vector<Task> getByDone(bool done);
+    void editTask(int id, std::string title, std::string description, int priority);
+    void clearDone();
     std::vector<Task> getAllSortedByPriority();
     std::vector<Task> getAllSortedAlpha();
     std::vector<Task> getAllSortedByDone();
