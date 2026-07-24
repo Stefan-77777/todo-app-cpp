@@ -70,25 +70,27 @@ void meniuFiltrare(TodoManager &manager) {
         std::cout << "1. Dupa prioritate" << std::endl;
         std::cout << "2. Dupa status" << std::endl;
         std::cout << "0. Inapoi" << std::endl;
-        std::cout << "> " << std::endl;
+        std::cout << "> ";
 
         int optiune;
         std::cin >> optiune;
 
         switch (optiune)
         {
-        case 1:
+        case 1: {
             int priority;
             std::cout << "Prioritate (1-3): ";
             std::cin >> priority;
             printTasks(manager.getByPriority(priority));
             break;
-        case 2:
+        }
+        case 2: {
             bool done;
             std::cout << "Rezolvate (1) sau nerezolvate (0): ";
             std::cin >> done;
             printTasks(manager.getByDone(done));
             break;
+        }
         case 0:
             return;
         default:
