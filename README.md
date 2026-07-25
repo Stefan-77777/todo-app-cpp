@@ -25,10 +25,10 @@ Aplicație CLI (linie de comandă) pentru gestionarea task-urilor, scrisă în C
 
 ## Compilare și rulare
 
-\`\`\`bash
+```bash
 g++ -std=c++17 main.cpp todo_manager.cpp -o todo
 ./todo
-\`\`\`
+```
 
 ## Ce am învățat
 
